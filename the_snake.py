@@ -106,9 +106,7 @@ class Snake(GameObject):
 
     def get_head_position(self):
         """Метод возвращает координаты головы змейки."""
-        head_position = self.positions[0]
-
-        return head_position
+        return self.positions[0]
 
     def move(self):
         """Метод отвечает за обновление координат всех сегментов змейки."""
