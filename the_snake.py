@@ -123,8 +123,9 @@ class Snake(GameObject):
     def move(self):
         """Метод отвечает за обновление координат всех сегментов змейки."""
         x_coordinate, y_coordinate = self.get_head_position()
-        new_x_coordinate = (x_coordinate + self.direction[0] * GRID_SIZE)
-        new_y_coordinate = (y_coordinate + self.direction[1] * GRID_SIZE)
+        direction_x, direction_y = self.direction
+        new_x_coordinate = (x_coordinate + direction_x * GRID_SIZE)
+        new_y_coordinate = (y_coordinate + direction_y * GRID_SIZE)
 
         new_head_position = (new_x_coordinate % SCREEN_WIDTH,
                              new_y_coordinate % SCREEN_HEIGHT)
@@ -203,7 +204,7 @@ def main():
         if snake.get_head_position() == apple.position:
             snake.length += 1
             apple.randomize_position(snake.positions)
-        if snake.get_head_position() in snake.positions[1:]:
+        elif snake.get_head_position() in snake.positions[1:]:
             snake.reset()
             apple.randomize_position(snake.positions)
             screen.fill(BOARD_BACKGROUND_COLOR)
